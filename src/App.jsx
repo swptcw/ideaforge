@@ -180,17 +180,13 @@ For each idea, provide ONLY valid JSON in this exact format (no additional text 
 
 CRITICAL: Return ONLY the JSON object, no markdown code blocks, no explanations. First 5 ideas should have "type": "remote", last 5 should have "type": "local".`;
 
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const response = await fetch("/api/generate-ideas", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 4000,
-          messages: [
-            { role: "user", content: prompt }
-          ]
+          prompt: prompt
         })
       });
 
